@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+ <head>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+<!-- Google Fonts CDN -->
+	<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+<!-- Cascade Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="static\css\stylesheet.css">
+	<!-- Title of Web Page -->
+	<title>Smart Wellness Program</title>
+	
+
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+	<!-- Background Header (Start) -->
+	 {%block body%}
+
+	 {%endblock%}
+
+
+		<!-- Navigation Bar (Start) -->
+	<!--	
+		<nav class="navbar navbar-expand-xl fixed-top navbar-dark shadow px-lg-5 px-md-4 px-sm-3">
+
+			<a href="/" class="navbar-brand px-lg-5 px-md-3 px-sm-1 mt-2">
+				<p class="logo-l1 d-inline-block">Smart</p>
+				<p class="logo-l2 d-inline-block">Wellness</p>
+				<p class="logo-l3 d-inline-block">Program</p>
+			</a>
+
+			<button class="navbar-toggler navbar-toggler-button" type="button">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="collapse-navbar">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item px-2"><a href="" class="nav-link text-white">Home</a></li>
+					<li class="nav-item px-2"><a href="/admin1" class="nav-link text-white">Admin</a></li>
+					<li class="nav-item px-2"><a href="/patient" class="nav-link text-white">Patient</a></li>
+					<li class="nav-item px-2"><a href="/doctor" class="nav-link text-white">Doctor</a></li>
+				 	<li class="nav-item px-2"><a href="#contact-section" class="nav-link text-white">Contact us</a></li>
+					<li class="nav-item px-2"><a href="#about-section" class="nav-link text-white">About</a></li>
+					<li class="nav-item dropdown ">
+						<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Login
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="/patientlogin.html">Patient Login</a>
+							<a class="dropdown-item" href="/admin-login.html">Admin Login</a>
+					
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+
+		</nav> -->
+		<!-- Navigation Bar (End) -->
+
+		<!-- Home Section (Start) -->
+		<section class="home-section" id="home-section">
+			<br>
+			<div class="container" align="center">
+
+				<!-- Home Section Title (Start) -->
+				<div class="home-section-title container">
+					<br>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="container text-lg-left text-md-left text-sm-center">
+								<br>
+								<h2 class="text-light">Welcome to</h2>
+								<h1 class="home-title-t1 display-3 ">Smart Wellness</h1>
+								<h1 class="home-title-t2 display-4 ">Program</h1>
+								<h4 class="text-white ">Empowering People to Improve Their Lives</h4>
+								<br>
+								<p class="text-light ">Optimize Hospital resources, personnel
+									and financial,<br>Integrated with your specialty systems and <br>extended to your
+									reality.</p>
+								<br>
+								<a class="btn btn-lg home-button-b1 font-weight-bold  my-2 mx-1"
+									onclick="scrollDown()">Get Started</a>
+								<a href="#contact-section"
+									class="btn btn-lg home-button-b2 font-weight-bold  my-2 mx-1"
+									id="contact-button">Contact Now</a>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- Home Section Title (end) -->
+
+			</div>
+			<br>
+		</section>
+		<!-- Home Section (End) -->
+
+		<!-- Fearues Section (Start) -->
+		<section class="feature-section bg-warning" id="feature-section">
+			<br>
+		
+			<div class="container feature-section-container" align="center">
+				<br>
+				<div class="container feature-section-title" data-aos="fade-up">
+					<h1>Awesome Feature</h1>
+					<hr class="hr-row w-25">
+				</div>
+				<br>
+				<div class="row">
+					<br>
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="container" >
+							<div class="feature-img p-5 shadow">
+								<img src="css\images\services\icon1.svg" class="img-fluid">
+							</div>
+							<br>
+							<h3>Improved Performance</h3>
+							<hr class="hr-row w-50">
+							<p>Automation is one of the main benefits here. It helps to optimize the user experience.
+								Medical specialists, patients, and hospital authorities can interact online, make the
+								appointments and exchange information.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="container" >
+							<div class="feature-img p-5 shadow">
+								<img src="css\images\services\icon2.svg" class="img-fluid">
+							</div>
+							<br>
+							<h3>Digital medical records </h3>
+							<hr class="hr-row w-50">
+							<p>The hospital database includes all the necessary patient data. The disease history, test
+								results, prescribed treatment, bill payments can be accessed by doctors as well as by
+								patients. It reduces risk of
+								mistakes.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="container" >
+							<div class="feature-img p-5 shadow">
+								<img src="css\images\services\icon3.svg" class="img-fluid">
+							</div>
+							<br>
+							<h3>Patient self-service</h3>
+							<hr class="hr-row w-50">
+							<p>Patients have their own system accounts where the list of various actions can be
+								performed. They are able to make online requests or reservation,receive the consultation
+								of the medical specialists and many more.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			
+		</section>
+		<!-- Fearues Section (End) -->
+
+
+
+
+		<!-- Contact us Section (Start) -->
+		<section class="contact-section bg-warning" id="contact-section">
+			<br>
+			<div class="contactbg">
+				<div class="container contact-section-container">
+
+					<!-- Contact Title (Start) -->
+					<br>
+					<div class="contact-section-title container" >
+						<h1 class="display-3 text-white">Contact us</h1>
+					</div>
+					<br>
+					<!-- Contact Title (End) -->
+
+					<div class="container-fluid">
+						<div class="row">
+
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- Contact Form (Start) -->
+								<div class="container" >
+									<br>
+									<div class="container text-light">
+										<h2>Send us Message</h2>
+										<hr class="hr-row w-50">
+									</div>
+									<br>
+									<form class="form-group" onsubmit="return validateForm()">
+										<div class="card-body">
+											<label class="text-dark font-weight-bold mb-3">Fill the form to send us
+												message</label>
+											<br>
+											<div class="input-group-prepend">
+												<span class="input-group-text text-input font-weight-bold"><img
+														src=""{% static 'person.svg' %}></span>
+												<input type="text" name="name"
+													class="input-group-text w-100 text-input text-left"
+													placeholder="Enter your name">
+											</div>
+											<br>
+											<div class="input-group-prepend">
+												<span class="input-group-text text-input font-weight-bold"><img
+														src="css\images\icons\at.svg"></span>
+												<input type="email" name="email"
+													class="input-group-text w-100 text-input text-left"
+													placeholder="Enter your email">
+											</div>
+											<br>
+											<div class="input-group-prepend">
+												<span class="input-group-text text-input font-weight-bold"><img
+														src="css\images\icons\phone.svg"></span>
+												<input type="phone" name="phone"
+													class="input-group-text w-100 text-input text-left"
+													placeholder="Enter your phone">
+											</div>
+											<br>
+											<div class="input-group-prepend">
+												<span class="input-group-text text-input font-weight-bold"><img
+														src="css\images\icons\message.svg"></span>
+												<textarea placeholder="Enter Message"
+													class="input-group-text w-100 text-input text-left"
+													rows="3"></textarea>
+											</div>
+											<br>
+											<div class="container">
+												<div class="form-check-inline">
+													<input type="checkbox" name="check" class="custom-checkbox mb-2">
+													<label class="font-weight-bold text-dark ml-1">I accept
+														terms</label><a href="#" class="nav-link mb-2">View</a>
+												</div>
+												<button
+													class="btn btn-lg shadow font-weight-bold submit-button shadow float-right"
+													type="submit">Submit</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+								<!-- Contact Form (End) -->
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<br>
+		</section>
+		<!-- Contact us Section (End) -->
+
+		<!-- About Section (Start) -->
+		<section class="about-section" id="about-section">
+			<br>
+			<div class="container about-section-container">
+
+				<!-- About Title (Start) -->
+				<br>
+				<div class="about-section-title container" >
+					<h1 class="display-4">About</h1>
+					<p>Our aim is to promote the development of high quality <br> hospital services and
+						community health care.</p>
+				</div>
+				<br>
+				<!-- About Title (End) -->
+
+				<!-- About Information (Start) -->
+				<div class="container" align="center">
+					<br>
+					<div class="row">
+						<div class="col-lg-6 col-md-12 col-sm-12 p-3">
+							<div class="container">
+								<img src="D:\SWP_2021\static\aboutus.jpg" alt="aboutus_img" class="img-fluid shadow">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-12 col-sm-12 p-3" align="left">
+							<div class="container"
+								<hr class="hr-row w-25">
+								<p>Our Mission is to bring healthcare of International standards within the reach of
+									every individual. We are committed to the achievement and maintenance of excellence
+									in education, research and healthcare for the benefit of humanity”</p>
+								
+							</div>
+						</div>
+					</div>
+					<br>
+				</div>
+				<!-- About Information (End) -->
+
+			</div>
+			<br>	
+		</section>
+		<!-- About Section (End) -->
+
+
+	
+	<!-- Background Header (End) -->
+
+   <!--
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+
+	<!-- AOS Script
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init({
+			offset: 270,
+			duration: 600
+		});
+	</script>
+	 -->
+
+</body>
+
+</html>
