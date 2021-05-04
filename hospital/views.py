@@ -8,12 +8,20 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.urls import reverse
-
+from hospital.models import Contact
 
 # Create your views here.
 
-
+ 
 def index(request):
+    if request.method=='POST':
+        name=request.POST['name']
+        email=request.POST['email']
+        phone=request.POST['phone']
+        content=request.POST['content']
+        print(name,email,phone,content)
+        contact=Contact(name=name, email=email, phone=phone, content=content)
+        contact.save()
     return render(request, 'index.html')
 
 def adminclick_view(request):

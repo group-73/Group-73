@@ -200,7 +200,9 @@
 										<hr class="hr-row w-50">
 									</div>
 									<br>
-									<form class="form-group" onsubmit="return validateForm()" method="post">
+									<form class="form-group" onsubmit="return validateForm()" method="POST">
+										{% csrf_token %}
+
 										<div class="card-body">
 											<label class="text-dark font-weight-bold mb-3">Fill the form to send us
 												message</label>
@@ -244,17 +246,12 @@
 													id="content"
 													name="content"
 													class="input-group-text w-100 text-input text-left"
-													rows="3"></textarea>hii vaibhav
+													rows="3"></textarea>
 											</div>
 											<br>
 											<div class="container">
-												<div class="form-check-inline">
-													<input type="checkbox" name="check" class="custom-checkbox mb-2">
-													<label class="font-weight-bold text-dark ml-1">I accept
-														terms</label><a href="#" class="nav-link mb-2">View</a>
-												</div>
 												<button
-													class="btn btn-lg shadow font-weight-bold submit-button shadow float-right"
+													class="btn btn-lg shadow font-weight-bold submit-button shadow float-center"
 													type="submit">Submit</button>
 											</div>
 										</div>
