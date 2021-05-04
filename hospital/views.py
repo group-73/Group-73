@@ -123,11 +123,11 @@ def afterlogin_view(request):
         else:
             return render(request,'doctor_wait_for_approval.html')
     elif is_assDoctor(request.user):
-        accountapproval=models.AssDoctor.objects.all().filter(user_id=request.user.id,status=True)
+        accountapproval=models.assDoctor.objects.all().filter(user_id=request.user.id,status=True)
         if accountapproval:
             return redirect('assdoctor-dashboard')
         else:
-            return render(request,'hospital/doctor_wait_for_approval.html')
+            return render(request,'assdoctor_wait_for_approval.html')
     elif is_patient(request.user):
         accountapproval=models.Patient.objects.all().filter(user_id=request.user.id,status=True)
         if accountapproval:
@@ -140,7 +140,30 @@ def afterlogin_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_dashboard_view(request):
-     return render(request,'admin_dashboard.html')#context=mydict)
+      #for both table in admin dashboard
+    doctors=models.Doctor.objects.all().order_by('-id')
+    patients=models.Patient.objects.all().order_by('-id')
+    #for three cards
+    doctorcount=models.Doctor.objects.all().filter(status=True).count()
+    pendingdoctorcount=models.Doctor.objects.all().filter(status=False).count()
+
+    patientcount=models.Patient.objects.all().filter(status=True).count()
+    pendingpatientcount=models.Patient.objects.all().filter(status=False).count()
+
+   # appointmentcount=models.Appointment.objects.all().filter(status=True).count()
+   # pendingappointmentcount=models.Appointment.objects.all().filter(status=False).count()
+    mydict={
+    'doctors':doctors,
+    'patients':patients,
+    'doctorcount':doctorcount,
+    'pendingdoctorcount':pendingdoctorcount,
+    'patientcount':patientcount,
+    'pendingpatientcount':pendingpatientcount,
+   # 'appointmentcount':appointmentcount,
+    #'pendingappointmentcount':pendingappointmentcount,
+    }
+    return render(request,'admin_dashboard.html',context=mydict)
+     
 
 #on admin dashboard doctor click
 @login_required(login_url='adminlogin')
@@ -211,6 +234,34 @@ def reject_doctor_view(request,pk):
     doctor.delete()
     return redirect('admin-approve-doctor')
 
+
+#------------------FOR APPROVING ASSDOCTOR BY ADMIN----------------------
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_approve_assdoctor_view(request):
+    #those whose approval are needed
+    assdoctors=models.assDoctor.objects.all().filter(status=False)
+    print(assdoctors)
+    return render(request,'admin_approve_assdoctor.html',{'assdoctors':assdoctors})
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def approve_assdoctor_view(request,pk):
+    assdoctor=models.assDoctor.objects.get(id=pk)
+    assdoctor.status=True
+    assdoctor.save()
+    return redirect(reverse('admin-approve-assdoctor'))
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def reject_assdoctor_view(request,pk):
+    assdoctor=models.assDoctor.objects.get(id=pk)
+    user=models.User.objects.get(id=assdoctor.user_id)
+    user.delete()
+    assdoctor.delete()
+    return redirect('admin-approve-assdoctor')
 
 #doctor related all views
 @login_required(login_url='doctorlogin')

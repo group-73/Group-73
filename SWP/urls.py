@@ -55,9 +55,12 @@ urlpatterns = [
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
 
     #assdoctor signup and login
-     path('assdoctorsignup',views.assdoctorsignup_view, name='assdoctorsignup'),
+    path('assdoctorsignup',views.assdoctorsignup_view, name='assdoctorsignup'),
     path('assdoctorlogin',LoginView.as_view(template_name='assdoctorlogin.html')),
     path('assdoctor-dashboard', views.assdoctor_dashboard_view,name='assdoctor-dashboard'),
+    path('admin-approve-assdoctor', views.admin_approve_assdoctor_view,name='admin-approve-assdoctor'),
+    path('approve-assdoctor/<int:pk>', views.approve_assdoctor_view,name='approve-assdoctor'),
+    path('reject-assdoctor/<int:pk>', views.reject_assdoctor_view,name='reject-assdoctor'),
 
 
 
@@ -65,7 +68,7 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='index.html'),name='logout'),
 
     path('admin-doctor', views.admin_doctor_view,name='admin-doctor'),
-     path('admin-approve-doctor', views.admin_approve_doctor_view,name='admin-approve-doctor'),
+    path('admin-approve-doctor', views.admin_approve_doctor_view,name='admin-approve-doctor'),
     path('approve-doctor/<int:pk>', views.approve_doctor_view,name='approve-doctor'),
     path('reject-doctor/<int:pk>', views.reject_doctor_view,name='reject-doctor'),
 
