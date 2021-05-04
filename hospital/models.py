@@ -9,6 +9,15 @@ departments=[('Cardiologist','Cardiologist'),
 ('Anesthesiologists','Anesthesiologists'),
 ('Colon and Rectal Surgeons','Colon and Rectal Surgeons')
 ]
+
+class Contact(models.Model):
+    id=models.AutoField(primary_key=True)   
+    name=models.CharField(max_length=255)
+    phone=models.CharField(max_length=12)
+    email=models.CharField(max_length=100)
+    content=models.TextField()
+     
+
 class Doctor(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='profile_pic/DoctorProfilePic/',null=True,blank=True)

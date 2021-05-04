@@ -200,7 +200,7 @@
 										<hr class="hr-row w-50">
 									</div>
 									<br>
-									<form class="form-group" onsubmit="return validateForm()">
+									<form class="form-group" onsubmit="return validateForm()" method="post">
 										<div class="card-body">
 											<label class="text-dark font-weight-bold mb-3">Fill the form to send us
 												message</label>
@@ -208,15 +208,21 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
 														src=""{% static 'person.svg' %}></span>
-												<input type="text" name="name"
+												<input type="text" 
+													name="name"
 													class="input-group-text w-100 text-input text-left"
+													id="name"
+													aria-describedby="name"
 													placeholder="Enter your name">
 											</div>
 											<br>
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
 														src="css\images\icons\at.svg"></span>
-												<input type="email" name="email"
+												<input type="email" 
+													name="email"
+													id="email"
+													aria-describedby="emailhelp"
 													class="input-group-text w-100 text-input text-left"
 													placeholder="Enter your email">
 											</div>
@@ -224,7 +230,9 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
 														src="css\images\icons\phone.svg"></span>
-												<input type="phone" name="phone"
+												<input type="phone" 
+													name="phone"
+													id="phone"
 													class="input-group-text w-100 text-input text-left"
 													placeholder="Enter your phone">
 											</div>
@@ -232,9 +240,11 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
 														src="css\images\icons\message.svg"></span>
-												<textarea placeholder="Enter Message"
+												<textarea placeholder="Enter your Message"
+													id="content"
+													name="content"
 													class="input-group-text w-100 text-input text-left"
-													rows="3"></textarea>
+													rows="3"></textarea>hii vaibhav
 											</div>
 											<br>
 											<div class="container">
