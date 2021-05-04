@@ -32,16 +32,27 @@ urlpatterns = [
     path('adminlogin',LoginView.as_view(template_name='hospital/adminl.html')),
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
 
+
     #patient signup and login
     path('patientsignup',views.patientsignup_view, name='patientsignup'),
     path('patientlogin',LoginView.as_view(template_name='patientlogin.html')),
+    #patient dashboard left side views
     path('patient-dashboard', views.patient_dashboard_view,name='patient-dashboard'),
+    path('patient-appointment', views.patient_appointment_view,name='patient-appointment'),
+    #path('patient-book-appointment', views.patient_book_appointment_view,name='patient-book-appointment'),
+   # path('patient-view-appointment', views.patient_view_appointment_view,name='patient-view-appointment'),
+    #path('patient-discharge', views.patient_discharge_view,name='patient-discharge'),
 
 
     #doctor signup and login
     path('doctorsignup',views.doctorsignup_view, name='doctorsignup'),
     path('doctorlogin',LoginView.as_view(template_name='doctorlogin.html')),
     path('doctor-dashboard', views.doctor_dashboard_view,name='doctor-dashboard'),
+
+    #doctor dashboard left side all views
+     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
+
+    path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
 
     #assdoctor signup and login
      path('assdoctorsignup',views.assdoctorsignup_view, name='assdoctorsignup'),
@@ -50,7 +61,20 @@ urlpatterns = [
 
 
 
-    path('afterlogin', views.afterlogin_view,name='afterlogin')
+    path('afterlogin', views.afterlogin_view,name='afterlogin'),
+    path('logout', LogoutView.as_view(template_name='index.html'),name='logout'),
+
+    path('admin-doctor', views.admin_doctor_view,name='admin-doctor'),
+     path('admin-approve-doctor', views.admin_approve_doctor_view,name='admin-approve-doctor'),
+    path('approve-doctor/<int:pk>', views.approve_doctor_view,name='approve-doctor'),
+    path('reject-doctor/<int:pk>', views.reject_doctor_view,name='reject-doctor'),
+
+    path('admin-patient', views.admin_patient_view,name='admin-patient'),
+    path('admin-approve-patient', views.admin_approve_patient_view,name='admin-approve-patient'),
+    path('approve-patient/<int:pk>', views.approve_patient_view,name='approve-patient'),
+    path('reject-patient/<int:pk>', views.reject_patient_view,name='reject-patient'),
+
+    path('admin-appointment', views.admin_appointment_view,name='admin-appointment'),
  
     
 ]
