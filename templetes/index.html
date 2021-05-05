@@ -31,46 +31,6 @@
 	 {%endblock%}
 
 
-		<!-- Navigation Bar (Start) -->
-	<!--	
-		<nav class="navbar navbar-expand-xl fixed-top navbar-dark shadow px-lg-5 px-md-4 px-sm-3">
-
-			<a href="/" class="navbar-brand px-lg-5 px-md-3 px-sm-1 mt-2">
-				<p class="logo-l1 d-inline-block">Smart</p>
-				<p class="logo-l2 d-inline-block">Wellness</p>
-				<p class="logo-l3 d-inline-block">Program</p>
-			</a>
-
-			<button class="navbar-toggler navbar-toggler-button" type="button">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="collapse-navbar">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item px-2"><a href="" class="nav-link text-white">Home</a></li>
-					<li class="nav-item px-2"><a href="/admin1" class="nav-link text-white">Admin</a></li>
-					<li class="nav-item px-2"><a href="/patient" class="nav-link text-white">Patient</a></li>
-					<li class="nav-item px-2"><a href="/doctor" class="nav-link text-white">Doctor</a></li>
-				 	<li class="nav-item px-2"><a href="#contact-section" class="nav-link text-white">Contact us</a></li>
-					<li class="nav-item px-2"><a href="#about-section" class="nav-link text-white">About</a></li>
-					<li class="nav-item dropdown ">
-						<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Login
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="/patientlogin.html">Patient Login</a>
-							<a class="dropdown-item" href="/admin-login.html">Admin Login</a>
-					
-						</div>
-					</li>
-					
-				</ul>
-			</div>
-
-		</nav> -->
-		<!-- Navigation Bar (End) -->
-
 		<!-- Home Section (Start) -->
 		<section class="home-section" id="home-section">
 			<br>
@@ -84,11 +44,12 @@
 							<div class="container text-lg-left text-md-left text-sm-center">
 								<br>
 								<h2 class="text-light">Welcome to</h2>
-								<h1 class="home-title-t1 display-3 ">Smart Wellness</h1>
-								<h1 class="home-title-t2 display-4 ">Program</h1>
+								<h1 class="home-title-t1 display-3 ">Smart </h1>
+								<h1 class="home-title-t2 display-3 ">Wellness</h1>
+								<h1 class="text-white display-4 ">Program</h1>
 								<h4 class="text-white ">Empowering People to Improve Their Lives</h4>
 								<br>
-								<p class="text-light ">Optimize Hospital resources, personnel
+								<p class="text-light "  style=" text-align:left">Optimize Hospital resources, personnel
 									and financial,<br>Integrated with your specialty systems and <br>extended to your
 									reality.</p>
 								<br>
@@ -126,7 +87,7 @@
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="container" >
 							<div class="feature-img p-5 shadow">
-								<img src="css\images\services\icon1.svg" class="img-fluid">
+								<img src="{% static 'css\images\about\icon1.svg' %}" class="img-fluid">
 							</div>
 							<br>
 							<h3>Improved Performance</h3>
@@ -139,7 +100,7 @@
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="container" >
 							<div class="feature-img p-5 shadow">
-								<img src="css\images\services\icon2.svg" class="img-fluid">
+								<img src="{% static 'css\images\about\icon2.svg' %}" class="img-fluid">
 							</div>
 							<br>
 							<h3>Digital medical records </h3>
@@ -153,7 +114,7 @@
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="container" >
 							<div class="feature-img p-5 shadow">
-								<img src="{% static 'css\images\services\icon3.svg' %} " class="img-fluid">
+								<img src="{% static 'css\images\about\icon3.svg' %} " class="img-fluid">
 							</div>
 							<br>
 							<h3>Patient self-service</h3>
@@ -204,12 +165,12 @@
 										{% csrf_token %}
 
 										<div class="card-body">
-											<label class="text-dark font-weight-bold mb-3">Fill the form to send us
+											<label class="text-white font-weight-bold mb-3">Fill the form to send us
 												message</label>
 											<br>
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
-														src=""{% static 'person.svg' %}></span>
+														src="{% static 'person.svg' %}"></span>
 												<input type="text" 
 													name="name"
 													class="input-group-text w-100 text-input text-left"
@@ -220,7 +181,7 @@
 											<br>
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
-														src="css\images\icons\at.svg"></span>
+														src="{% static 'css\images\icons\at.svg' %} "></span>
 												<input type="email" 
 													name="email"
 													id="email"
@@ -231,7 +192,7 @@
 											<br>
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
-														src="css\images\icons\phone.svg"></span>
+														src="{% static 'css\images\icons\phone.svg' %}"></span>
 												<input type="phone" 
 													name="phone"
 													id="phone"
@@ -241,7 +202,7 @@
 											<br>
 											<div class="input-group-prepend">
 												<span class="input-group-text text-input font-weight-bold"><img
-														src="css\images\icons\message.svg"></span>
+														src="{% static 'css\images\icons\message.svg' %}"></span>
 												<textarea placeholder="Enter your Message"
 													id="content"
 													name="content"
@@ -278,7 +239,7 @@
 				<br>
 				<div class="about-section-title container" >
 					<h1 class="display-4">About</h1>
-					<p>Our aim is to promote the development of high quality <br> hospital services and
+					<p style="text-align:left">Our aim is to promote the development of high quality <br> hospital services and
 						community health care.</p>
 				</div>
 				<br>
@@ -290,7 +251,7 @@
 					<div class="row">
 						<div class="col-lg-6 col-md-12 col-sm-12 p-3">
 							<div class="container">
-								<img src="D:\SWP_2021\static\aboutus.jpg" alt="aboutus_img" class="img-fluid shadow">
+								<img src="{% static 'css\images\about\aboutus.png' %} " alt="aboutus_img" class="img-fluid shadow">
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-12 col-sm-12 p-3" align="left">
@@ -310,14 +271,15 @@
 			</div>
 			<br>	
 		</section>
+		{% include 'footer.html' %}
+
 		<!-- About Section (End) -->
 
 
 	
 	<!-- Background Header (End) -->
 
-   <!--
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+  
 
 	<!-- AOS Script
 	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>

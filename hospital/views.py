@@ -38,6 +38,8 @@ def Contactdelete(request):
     return redirect('/admin-messages')
 
 def adminclick_view(request):
+    if request.user.is_authenticated:
+        return redirect('afterlogin')
     return render(request, 'adminclick.html')
 
 def patientclick_view(request):
