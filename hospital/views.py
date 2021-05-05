@@ -37,6 +37,8 @@ def Contactdelete(request):
     return redirect('/admin-messages')
 
 def adminclick_view(request):
+    if request.user.is_authenticated:
+        return redirect('afterlogin')
     return render(request, 'adminclick.html')
 
 def patientclick_view(request):
@@ -210,6 +212,7 @@ def delete_patient_from_hospital_view(request,pk):
     user=models.User.objects.get(id=patient.user_id)
     user.delete()
     patient.delete()
+    messages.success(request, "Patient has been deleted succesfully")
     return redirect('admin-view-patient')
 
 
@@ -234,6 +237,7 @@ def update_patient_view(request,pk):
             patient.status=True
             patient.assignedDoctorId=request.POST.get('assignedDoctorId')
             patient.save()
+            messages.success(request, "Information has been updated succesfully")
             return redirect('admin-view-patient')
     return render(request,'admin_update_patient.html',context=mydict)
 
