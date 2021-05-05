@@ -159,12 +159,13 @@ div.contact-section-title {
 .text-input {
 	border-radius: 0px;
 }
+/*
 .maps {
 	border: 5px solid white;
 	height: 40vh;
 	width: 100%;
 }
-
+    */
 /* About Section */
 section.about-section {
 	height: auto;
