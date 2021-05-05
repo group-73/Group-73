@@ -31,7 +31,8 @@ urlpatterns = [
     path('adminsignup',views.adminsignup_view, name='adminsignup'),
     path('adminlogin',LoginView.as_view(template_name='hospital/adminl.html')),
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
-
+    path('admin-messages',views.admin_messages_view, name='admin-messages'),
+    path('Contactdelete', views.Contactdelete, name='Contactdelete'),
 
     #patient signup and login
     path('patientsignup',views.patientsignup_view, name='patientsignup'),

@@ -24,6 +24,18 @@ def index(request):
         contact.save()
     return render(request, 'index.html')
 
+def admin_messages_view(request):
+    all_message=Contact.objects.all()
+    return render(request,'admin_messages.html',{'messages': all_message})
+
+
+def Contactdelete(request):
+    delt=request.GET.get('delt')
+       
+    cts = Contact.objects.filter(id=delt).delete()
+    messages.success(request, "Message has been deleted succesfully")
+    return redirect('/admin-messages')
+
 def adminclick_view(request):
     return render(request, 'adminclick.html')
 

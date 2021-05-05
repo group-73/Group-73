@@ -2,6 +2,7 @@ from hospital import views
 from django.contrib import admin
 from django.urls import path,include
 
+
 urlpatterns = [
    # path('', views.index,name='index'),
    # path('adminclick/',views.adminclick_view,name='adminclick'),
@@ -10,5 +11,4 @@ urlpatterns = [
    # path('assdoctorclick',views.assdoctorclick_view,name='assdoctorclick'),
 
    # path('adminsignup',views.adminsignup_view, name='adminsignup')
-    
 ]

@@ -16,7 +16,9 @@ class Contact(models.Model):
     phone=models.CharField(max_length=12)
     email=models.CharField(max_length=100)
     content=models.TextField()
-    timestamp=models.DateTimeField(auto_now_add=True , blank=True) 
+    timestamp=models.DateTimeField(auto_now_add=True , blank=True)
+    def _str_(self):
+        return self.name 
 
 class Doctor(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
