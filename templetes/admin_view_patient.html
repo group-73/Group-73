@@ -34,6 +34,7 @@
           <th>Symptoms</th>
           <th>Mobile</th>
           <th>Address</th>
+          <th>Status</th>
           <th>Update</th>
           <th>Delete</th>
         </tr>
@@ -45,6 +46,11 @@
         <td>{{p.symptoms}}</td>
         <td>{{p.mobile}}</td>
         <td>{{p.address}}</td>
+        {% if p.admit %}
+               <td bgcolor="white"><a class="btn-sm btn-primary" href="/dischargepatient?id={{p.id}}" role="button">Discharge </a></td>
+                {% else %}
+                <td bgcolor="white"><a class="btn-sm btn-warning" href="/admitpatient?id={{p.id}}" role="button">Admit </a></td>
+                {% endif %}
         <td><a class="btn btn-primary btn-xs" href="{% url 'update-patient' p.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
         <td><a class="btn btn-danger btn-xs" href="{% url 'delete-patient-from-hospital' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>

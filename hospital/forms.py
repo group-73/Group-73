@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from . import models
+from hospital.models import admitrequest
 
 class AdminSigupForm(forms.ModelForm):
     class Meta:
@@ -9,6 +10,19 @@ class AdminSigupForm(forms.ModelForm):
         widgets = {
         'password': forms.PasswordInput()
         }
+
+class AdmitrequestForm(forms.ModelForm):
+    class Meta:
+        model=admitrequest
+        fields=['name','phone']
+        widgets = {
+
+            'name' : forms.TextInput(attrs={'class':'form-control', 'required':'True'}),
+            'phone' : forms.TextInput(attrs={'class':'form-control', 'required':'True'}),
+            
+           
+        }
+       
 
 class DoctorUserForm(forms.ModelForm):
     class Meta:

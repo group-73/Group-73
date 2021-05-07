@@ -22,6 +22,13 @@ class Contact(models.Model):
         return "{}".format(self.name) 
 
 
+class admitrequest(models.Model):  
+    name=models.CharField(max_length=255)
+    phone=models.CharField(max_length=12)
+    timestamp=models.DateTimeField(auto_now_add=True , blank=True)
+    def _str_(self):
+        return self.name
+
 class Doctor(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='profile_pic/DoctorProfilePic/',null=True,blank=True)
@@ -47,6 +54,7 @@ class Patient(models.Model):
     assignedDoctorId = models.PositiveIntegerField(null=True)
     admitDate=models.DateField(auto_now=True)
     status=models.BooleanField(default=False)
+    admit=models.BooleanField(default=False)
     @property
     def get_name(self):
         return self.user.first_name+" "+self.user.last_name

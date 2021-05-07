@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Doctor,Patient,assDoctor,Contact,Appointment,PatientDischargeDetails
+from .models import Doctor,Patient,assDoctor,Contact,Appointment,PatientDischargeDetails,admitrequest
 # Register your models here.
 
 admin.site.register(Doctor)
@@ -8,3 +8,4 @@ admin.site.register(assDoctor)
 admin.site.register(Appointment)
 admin.site.register(Contact)
 admin.site.register(PatientDischargeDetails)
+admin.site.register(admitrequest)

@@ -154,7 +154,6 @@
         <div class="col-md-8 market-update-left">
           <h3>{{patientcount}}</h3>
           <h4>Patient Under You</h4>
-
         </div>
         <div class="col-md-4 market-update-right">
           <i class="fa fa-user-o"></i>
@@ -188,6 +187,30 @@
         <div class="col-md-4 market-update-right">
           <i class="fa fa-check-circle-o" aria-hidden="true"></i>
         </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>
+    <div class="col-md-4 market-update-gd">
+      <div class="market-update-block " style="background-color:#0E6655;">
+        <h4> Admit request</h4>
+        <div class="text-center">
+        <form action="/admit_request_from_doctor" method='post'>
+
+
+
+
+    {{forms.as_p}}
+    <br>
+
+    <button type="submit" class="btn btn-success ">Submit </button>
+
+
+
+
+    {% csrf_token %}
+
+  </form>
+  </div>
         <div class="clearfix"> </div>
       </div>
     </div>

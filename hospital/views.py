@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.urls import reverse
-from hospital.models import Contact
+from hospital.models import Contact, admitrequest
 from datetime import datetime,timedelta,date
 
 # Create your views here.
@@ -30,12 +30,21 @@ def admin_messages_view(request):
     return render(request,'admin_messages.html',{'messages': all_message})
 
 
+
+
 def Contactdelete(request):
     delt=request.GET.get('delt')
        
     cts = Contact.objects.filter(id=delt).delete()
     messages.success(request, "Message has been deleted succesfully")
     return redirect('/admin-messages')
+
+
+def request_admit_delete_view(request):
+    delt=request.GET.get('delt')
+       
+    cts = admitrequest.objects.filter(id=delt).delete()
+    return redirect('/admin-patient')
 
 def adminclick_view(request):
     if request.user.is_authenticated:
@@ -198,7 +207,9 @@ def admin_doctor_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_patient_view(request):
-    return render(request,'admin_patient.html')
+    all_request=admitrequest.objects.all()
+    return render(request,'admin_patient.html',{'messages':all_request})
+    
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -215,7 +226,21 @@ def delete_patient_from_hospital_view(request,pk):
     patient.delete()
     return redirect('admin-view-patient')
 
+def admit_patient(request):
+    idd=request.GET.get('id')
+    patient=models.Patient.objects.get(id=idd)
+    patient.admit=True
+    patient.admitdate=datetime.today()
+    patient.save()
+    return redirect('/admin-view-patient')
 
+def dischargepatient(request):
+    idd=request.GET.get('id')
+    patient=models.Patient.objects.get(id=idd)
+    patient.admit=False
+    patient.save()
+    return redirect('/admin-view-patient')
+    
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -418,8 +443,8 @@ def doctor_dashboard_view(request):
     #for all cards
     patientcount=models.Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id).count()
     appointmentcount=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).count()
-   # patientdischarged=models.PatientDischargeDetails.objects.all().distinct().filter(assignedDoctorName=request.user.first_name).count()
-
+    patientdischarged=models.PatientDischargeDetails.objects.all().distinct().filter(assignedDoctorName=request.user.first_name).count()
+    forms=AdmitrequestForm()
     #for  table in doctor dashboard
     appointments=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).order_by('-id')
     patientid=[]
@@ -430,9 +455,10 @@ def doctor_dashboard_view(request):
     mydict={
     'patientcount':patientcount,
     'appointmentcount':appointmentcount,
-    #'patientdischarged':patientdischarged,
+    'patientdischarged':patientdischarged,
     'appointments':appointments,
-    'doctor':models.Doctor.objects.get(user_id=request.user.id), #for profile picture of doctor in sidebar
+    'doctor':models.Doctor.objects.get(user_id=request.user.id),
+    'forms':forms
     }
     return render(request,'doctor_dashboard.html',context=mydict)
 
@@ -443,6 +469,19 @@ def doctor_patient_view(request):
     'doctor':models.Doctor.objects.get(user_id=request.user.id), #for profile picture of doctor in sidebar
     }
     return render(request,'doctor_patient.html',context=mydict)
+
+def admit_request_from_doctor(request):
+    if request.method == 'POST':
+        
+        
+        forms=AdmitrequestForm(request.POST)
+        if forms.is_valid():
+
+            f=forms.save()
+            return redirect('doctor-dashboard')
+   
+    
+    return redirect('/')
 
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
@@ -519,6 +558,7 @@ def patient_dashboard_view(request):
     'symptoms':patient.symptoms,
     'doctorDepartment':doctor.department,
     'admitDate':patient.admitDate,
+    'admit':patient.admit,
     }
     return render(request,'patient_dashboard.html',context=mydict)
 
@@ -661,6 +701,7 @@ from xhtml2pdf import pisa
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
+from hospital.forms import AdmitrequestForm
 
 
 def render_to_pdf(template_src, context_dict):

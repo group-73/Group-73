@@ -92,18 +92,6 @@
     </div>
 
     <div class="col-md-4 col-xl-3">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-          <a href="/admin-add-patient">
-            <h6 class="m-b-20">Admit Patient</h6>
-          </a>
-          <br>
-          <h2 class="text-right"><i class="fas fa-user-plus f-left"></i></h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
       <div class="card bg-c-yellow order-card">
         <div class="card-block">
           <a href="/admin-approve-patient">
@@ -129,4 +117,40 @@
   </div>
 </div>
 <br><br><br><br><br><br><br>
+
+<div class="container " style="background-color: #FFFFFF" >
+  <div class="row" >
+    
+    <div class="panel panel-primary col-md-20 " style="margin-left:15%" >
+      <div class="panel-heading" style="text-align:center;">
+        <h3 class="panel-title">Admit Request</h3>
+      </div>
+      <table class="table table-hover" id="dev-table" >
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Time</th>
+
+          </tr>
+        </thead>
+        {% for c in messages %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td> {{c.name}}</td>
+          <td>{{c.phone}}</td>
+          <td>{{c.timestamp}}</td>
+
+        
+
+          <td bgcolor="white"><a class="btn-sm btn-danger" href="/requestadmitdelete?delt={{c.id}}"
+            role="button">Delete</a></td>
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
 {% endblock content %}
