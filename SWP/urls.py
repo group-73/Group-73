@@ -50,9 +50,11 @@ urlpatterns = [
     path('doctorlogin',LoginView.as_view(template_name='doctorlogin.html')),
     path('doctor-dashboard', views.doctor_dashboard_view,name='doctor-dashboard'),
     path('admit_request_from_doctor',views.admit_request_from_doctor,name='admit_request_from_doctor'),
+    path('discharge_request_from_doctor',views.discharge_request_from_doctor,name='discharge_request_from_doctor'),
+
 
     #doctor dashboard left side all views
-     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
+    path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
 
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
@@ -96,7 +98,9 @@ urlpatterns = [
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment_view,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment_view,name='reject-appointment'),
-    path('requestadmitdelete',views.request_admit_delete_view,name='requestadmitdelete')
+    path('requestadmitdelete',views.request_admit_delete_view,name='requestadmitdelete'),
+    path('dischargerequestadmitdelete',views.dischargerequestadmitdelete,name='dischargerequestadmitdelete'),
+    
  
     
     

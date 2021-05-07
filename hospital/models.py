@@ -29,6 +29,15 @@ class admitrequest(models.Model):
     def _str_(self):
         return self.name
 
+class dischargerequest(models.Model):  
+    name=models.CharField(max_length=255)
+    phone=models.CharField(max_length=12)
+    doctor_bill=models.CharField(max_length=12)
+    timestamp=models.DateTimeField(auto_now_add=True , blank=True)
+    def _str_(self):
+        return self.name
+
+
 class Doctor(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='profile_pic/DoctorProfilePic/',null=True,blank=True)

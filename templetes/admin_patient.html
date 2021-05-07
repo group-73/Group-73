@@ -151,6 +151,39 @@
         {% endfor %}
       </table>
     </div>
+
+     <div class="panel panel-primary col-md-20 " style="margin-left:15%" >
+      <div class="panel-heading" style="text-align:center;">
+        <h3 class="panel-title">Discharge Request</h3>
+      </div>
+      <table class="table table-hover" id="dev-table" >
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Doctor bill</th>
+            <th>Time</th>
+
+          </tr>
+        </thead>
+        {% for c in message %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td> {{c.name}}</td>
+          <td>{{c.phone}}</td>
+          <td>{{c.doctor_bill}}</td>
+          <td>{{c.timestamp}}</td>
+
+        
+
+          <td bgcolor="white"><a class="btn-sm btn-danger" href="/dischargerequestadmitdelete?delt={{c.id}}"
+            role="button">Delete</a></td>
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 </div>
 {% endblock content %}

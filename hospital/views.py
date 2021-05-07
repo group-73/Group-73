@@ -8,8 +8,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.urls import reverse
-from hospital.models import Contact, admitrequest
+from hospital.models import Contact, admitrequest, dischargerequest
 from datetime import datetime,timedelta,date
+from .forms import *
 
 # Create your views here.
 
@@ -45,6 +46,12 @@ def request_admit_delete_view(request):
        
     cts = admitrequest.objects.filter(id=delt).delete()
     return redirect('/admin-patient')
+
+def dischargerequestadmitdelete(request):
+    delt=request.GET.get('delt')
+       
+    cts = dischargerequest.objects.filter(id=delt).delete()
+    return redirect('/admin-patient')    
 
 def adminclick_view(request):
     if request.user.is_authenticated:
@@ -208,8 +215,12 @@ def admin_doctor_view(request):
 @user_passes_test(is_admin)
 def admin_patient_view(request):
     all_request=admitrequest.objects.all()
-    return render(request,'admin_patient.html',{'messages':all_request})
+    all_requests=dischargerequest.objects.all()
+    return render(request,'admin_patient.html',{'messages':all_request,'message':all_requests})
     
+
+
+        
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -445,6 +456,7 @@ def doctor_dashboard_view(request):
     appointmentcount=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).count()
     patientdischarged=models.PatientDischargeDetails.objects.all().distinct().filter(assignedDoctorName=request.user.first_name).count()
     forms=AdmitrequestForm()
+    form=DischargerequestForm()
     #for  table in doctor dashboard
     appointments=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).order_by('-id')
     patientid=[]
@@ -458,7 +470,8 @@ def doctor_dashboard_view(request):
     'patientdischarged':patientdischarged,
     'appointments':appointments,
     'doctor':models.Doctor.objects.get(user_id=request.user.id),
-    'forms':forms
+    'forms':forms,
+    'form':form
     }
     return render(request,'doctor_dashboard.html',context=mydict)
 
@@ -475,6 +488,19 @@ def admit_request_from_doctor(request):
         
         
         forms=AdmitrequestForm(request.POST)
+        if forms.is_valid():
+
+            f=forms.save()
+            return redirect('doctor-dashboard')
+   
+    
+    return redirect('/')
+
+def discharge_request_from_doctor(request):
+    if request.method == 'POST':
+        
+        
+        forms=DischargerequestForm(request.POST)
         if forms.is_valid():
 
             f=forms.save()
