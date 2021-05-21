@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
   #  path('', include('hospital.urls')),
   path('', views.index,name='index'),
-    path('adminclick/',views.adminclick_view,name='adminclick'),
+    path('adminclickk',views.adminclick_view,name='adminclick'),
     path('patientclick',views.patientclick_view,name='patientclick'),
     path('doctorclick',views.doctorclick_view,name='doctorclick'),
     path('assdoctorclick',views.assdoctorclick_view,name='assdoctorclick'),
@@ -59,6 +59,8 @@ urlpatterns = [
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
+    path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
+    path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
     path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
 
     #assdoctor signup and login
@@ -76,8 +78,13 @@ urlpatterns = [
 
     path('admin-doctor', views.admin_doctor_view,name='admin-doctor'),
     path('admin-approve-doctor', views.admin_approve_doctor_view,name='admin-approve-doctor'),
+    path('delete-doctor-from-hospital/<int:pk>', views.delete_doctor_from_hospital_view,name='delete-doctor-from-hospital'),
+    path('update-doctor/<int:pk>', views.update_doctor_view,name='update-doctor'),
+    path('admin-add-doctor', views.admin_add_doctor_view,name='admin-add-doctor'),
     path('approve-doctor/<int:pk>', views.approve_doctor_view,name='approve-doctor'),
     path('reject-doctor/<int:pk>', views.reject_doctor_view,name='reject-doctor'),
+    path('admin-view-doctor', views.admin_view_doctor_view,name='admin-view-doctor'),
+    path('admin-view-doctor-specialisation',views.admin_view_doctor_specialisation_view,name='admin-view-doctor-specialisation'),
 
     path('admin-patient', views.admin_patient_view,name='admin-patient'),
     path('admin-view-patient', views.admin_view_patient_view,name='admin-view-patient'),
