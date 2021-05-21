@@ -97,4 +97,6 @@ class PatientAppointmentForm(forms.ModelForm):
         model=models.Appointment
         fields=['description','status']
 
+        
+
 

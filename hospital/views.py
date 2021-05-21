@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.urls import reverse
 from hospital.models import Contact, admitrequest, dischargerequest
 from datetime import datetime,timedelta,date
-from .forms import *
+
 
 # Create your views here.
 
@@ -54,9 +54,9 @@ def dischargerequestadmitdelete(request):
     return redirect('/admin-patient')    
 
 def adminclick_view(request):
-    if request.user.is_authenticated:
-        return redirect('afterlogin')
-    return render(request, 'adminclick.html')
+   # if request.user.is_authenticated:
+   #     return redirect('afterlogin')
+        return render(request, 'adminclick.html')
 
 def patientclick_view(request):
     return render(request, 'patientclick.html')
@@ -727,7 +727,7 @@ from xhtml2pdf import pisa
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
-from hospital.forms import AdmitrequestForm
+from hospital.forms import AdmitrequestForm, DischargerequestForm
 
 
 def render_to_pdf(template_src, context_dict):
