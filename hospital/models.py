@@ -21,6 +21,21 @@ class Contact(models.Model):
     def __str__(self):
         return "{}".format(self.name) 
 
+class Assdoc_to_Doctor_Messages(models.Model):
+    id=models.AutoField(primary_key=True)   
+    patientId=models.PositiveIntegerField(null=True)
+    doctorId=models.PositiveIntegerField(null=True)
+    assdoctorId=models.PositiveIntegerField(null=True)
+    lab_report= models.ImageField(upload_to='Lab_reports/',null=True,blank=True)
+    assdoc_name=models.CharField(max_length=255)
+    doc_name=models.CharField(max_length=255)
+    Patient_name=models.CharField(max_length=255)
+    content=models.TextField()
+    timestamp=models.DateTimeField(auto_now_add=True , blank=True)
+    @property
+    def __str__(self):
+        return "{}".format(self.name) 
+
 
 class admitrequest(models.Model):  
     name=models.CharField(max_length=255)

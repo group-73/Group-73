@@ -27,6 +27,12 @@ urlpatterns = [
     path('doctorclick',views.doctorclick_view,name='doctorclick'),
     path('assdoctorclick',views.assdoctorclick_view,name='assdoctorclick'),
 
+
+    #Messages
+    path('assdoc-to-doctor-messages',views.assdoc_to_doctor_messages_view, name='assdoc_to_doctor_messages'),
+    path('assdoc-to-doctor',views.assdoc_to_doctor_view, name='assdoc_to_doctor'),
+    
+
     #admin sginup and login
     path('adminsignup',views.adminsignup_view, name='adminsignup'),
     path('adminlogin',LoginView.as_view(template_name='hospital/adminl.html')),
