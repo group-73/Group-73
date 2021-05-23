@@ -31,6 +31,8 @@ urlpatterns = [
     #Messages
     path('assdoc-to-doctor-messages',views.assdoc_to_doctor_messages_view, name='assdoc_to_doctor_messages'),
     path('assdoc-to-doctor',views.assdoc_to_doctor_view, name='assdoc_to_doctor'),
+    path('doc-to-assdoc-messages',views.doc_to_assdoc_messages_view, name='doc_to_assdoc_messages'),
+    path('doc-to-assdoc',views.doc_to_assdoc_view, name='doc_to_assdoc'),
     
 
     #admin sginup and login

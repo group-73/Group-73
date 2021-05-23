@@ -1,0 +1,48 @@
+{% extends 'assdoctor_base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+<br><br><br><br>
+<div class="container">
+  <div class="row" >
+    
+    <div class="panel panel-primary col-md-20 " style="margin-left:15%" >
+      <div class="panel-heading" style="text-align:center;">
+        <h3 class="panel-title">Messages</h3>
+      </div>
+      <table class="table table-hover" id="dev-table" >
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Doctor Name</th>
+            <th>Patient Name</th> 
+            <th>Message</th>
+            <th>Lab reports</th>
+            <th>Time</th>
+
+          </tr>
+        </thead>
+        {% for c in messages %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td> {{c.doc_name}}</td>
+          <td>{{c.Patient_name}}</td>
+          <td>{{c.content}}</td>
+          <td>{{c.lab_report}}</td>
+          <td>{{c.timestamp}}</td>
+
+          <td bgcolor="white"><a class="btn-sm btn-danger" href="/Contactdelete?delt={{c.id}}"
+            role="button">Reply</a></td>
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

@@ -11,7 +11,7 @@ from django.urls import reverse
 from hospital.models import Contact, admitrequest, dischargerequest
 from datetime import datetime,timedelta,date
 from hospital.models import Assdoc_to_Doctor_Messages
-
+from hospital.models import doc_to_Assdoc_Messages
 
 # Create your views here.
 
@@ -561,11 +561,39 @@ def doctor_patient_view(request):
     }
     return render(request,'doctor_patient.html',context=mydict)
 
+
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
 def assdoc_to_doctor_messages_view(request):
     all_message=Assdoc_to_Doctor_Messages.objects.all()
     return render(request,'assdoc_to_doctor_messages.html',{'messages': all_message})
+
+
+
+@login_required(login_url='dotorlogin')
+@user_passes_test(is_doctor)
+def doc_to_assdoc_view(request):
+    messageForm=forms.DoctortoassistantmessageForm()
+    #patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
+    mydict={'messageForm':messageForm}
+    if request.method=='POST':
+        messageForm=forms.DoctortoassistantmessageForm(request.POST)
+        if messageForm.is_valid():
+            message=messageForm.save(commit=False)
+            message.doctorId=request.POST.get('doctorId')
+            message.assdoctorId=request.POST.get('assdoctorId')
+            message.patientId=request.user.id #----user can choose any patient but only their info will be stored
+            message.assdoc_name=models.User.objects.get(id=request.POST.get('assdoctorId')).first_name
+            message.doc_name=models.User.objects.get(id=request.POST.get('doctorId')).first_name
+          
+           # message.lab_report=
+            message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be stored
+            message.status=True
+            message.save()
+        return HttpResponseRedirect('doc-to-assdoc')
+    return render(request,'doc_to_assdoc.html',context=mydict)
+
+
 
 
 @login_required(login_url='doctorlogin')
@@ -664,6 +692,14 @@ def delete_appointment_view(request,pk):
 def assdoctor_dashboard_view(request):
     return render(request,'assdoctor_dashboard.html')#,conetxt=mydict)
 
+
+@login_required(login_url='assdoctorlogin')
+@user_passes_test(is_assDoctor)
+def doc_to_assdoc_messages_view(request):
+    all_message=doc_to_Assdoc_Messages.objects.all()
+    return render(request,'doc_to_assdoc_messages.html',{'messages': all_message})
+
+
 @login_required(login_url='assdotorlogin')
 @user_passes_test(is_assDoctor)
 def assdoc_to_doctor_view(request):
@@ -675,8 +711,10 @@ def assdoc_to_doctor_view(request):
         if messageForm.is_valid():
             message=messageForm.save(commit=False)
             message.doctorId=request.POST.get('doctorId')
+            #message.assdoctorId=request.POST.get('assdoctorId')
             message.patientId=request.user.id #----user can choose any patient but only their info will be stored
             message.doc_name=models.User.objects.get(id=request.POST.get('doctorId')).first_name
+            #message.assdoc_name=models.User.objects.get(id=request.POST.get('assdoctorId')).first_name
            # message.lab_report=
             message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be stored
             message.status=True

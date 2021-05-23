@@ -105,4 +105,12 @@ class AssistanttodoctormessageForm(forms.ModelForm):
         model=models.Assdoc_to_Doctor_Messages
         fields=['content','lab_report']
 
+class DoctortoassistantmessageForm(forms.ModelForm):
+    assdoctorId=forms.ModelChoiceField(queryset=models.assDoctor.objects.all().filter(status=True),empty_label="Assistant Doctor Name", to_field_name="user_id")
+    patientId=forms.ModelChoiceField(queryset=models.Patient.objects.all().filter(status=True),empty_label="Patient Name and Symptoms", to_field_name="user_id")
+    doctorId=forms.ModelChoiceField(queryset=models.Doctor.objects.all().filter(status=True), to_field_name="user_id")
+    class Meta:
+        model=models.doc_to_Assdoc_Messages
+        fields=['content','lab_report']
+
 

@@ -12,7 +12,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style media="screen">
     a:link {
@@ -270,6 +272,64 @@
       }
     }
 
+    
+    #nav li a {
+      display: block;
+      padding: 0;
+      text-decoration: none;
+      width: 182px;
+      /* this is the width of the menu items */
+      line-height: 35px;
+      /* this is the hieght of the menu items */
+      color: #ffffff;
+      /* list item font color */
+    }
+    
+    #nav li li a {
+      font-size: 80%;
+    }
+    
+    
+    /* smaller font size for sub menu items */
+    
+    #nav li:hover {
+      background: #003f20;
+    }
+    
+    
+    /* highlights current hovered list item and the parent list items when hovering over sub menues */
+    
+    #nav ul {
+      position: absolute;
+      padding: 0;
+      left: 0;
+      display: none;
+      /* hides sublists */
+    }
+    
+    #nav li:hover ul ul {
+      display: none;
+    }
+    
+    
+    /* hides sub-sublists */
+    
+    #nav li:hover ul {
+      display: block;
+    }
+    
+    
+    /* shows sublist on hover */
+    
+    #nav li li:hover ul {
+      display: block;
+      /* shows sub-sublist on hover */
+      margin-left: 182px;
+      /* this should be the same width as the parent list item */
+      margin-top: -35px;
+      /* aligns top of sub menu with top of list item */
+   
+
   </style>
 </head>
 
@@ -283,13 +343,20 @@
       <h6>Doctor</h6>
       <h2>{{request.user.first_name}}</h2>
     </header>
-    <ul>
+    <ul id="nav">
       <li tabindex="0" class="icon-dashboard"> <a style="color:white; font-size: 20px" href="/assdoctor-dashboard"><span>Dashboard</span></a> </li>
       <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href="/doctor-patient"><span>Patient</span></a></li>
-      <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href="/assdoc-to-doctor"><span>Messages</span></a></li>
+      <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href=""><span>Message</span></a>
+        <ul>
+          <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href="/doc-to-assdoc-messages"><span>Read Messages</span></a></li>
+          <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href="/assdoc-to-doctor"><span>Send Message</span></a></li>
+        </ul>
+      </li>
      
     </ul>
   </nav>
+
+
   <main>
     <!-- nav start -->
     <div class="bs-example">

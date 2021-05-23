@@ -270,6 +270,48 @@
       }
     }
 
+    
+    #nav li a {
+      display: block;
+      padding: 0;
+      text-decoration: none;
+      width: 189.5px;
+      /* this is the width of the menu items */
+      line-height: 35px;
+      /* this is the hieght of the menu items */
+      color: #ffffff;
+      /* list item font color */
+    }
+    
+    
+    
+    /* smaller font size for sub menu items */
+    
+    #nav li:hover {
+      background: #003f20;
+    }
+    
+    
+    /* highlights current hovered list item and the parent list items when hovering over sub menues */
+    
+    #nav ul {
+      position: absolute;
+      padding: 0;
+      left: 0;
+      display: none;
+      /* hides sublists */
+    }
+    
+    
+    
+    /* hides sub-sublists */
+    
+    #nav li:hover ul {
+      display: block;
+    }
+    
+    
+    
   </style>
 </head>
 
@@ -283,12 +325,16 @@
       <h6 style="color:black;  font-size: 20px">Doctor</h6>
       <h2 style="color:white;  font-size: 30px">{{request.user.first_name}}</h2>
     </header>
-    <ul>
+    <ul id="nav">
       <li tabindex="0" class="icon-dashboard"> <a style="color:white;font-size: 20px; text-decoration:none;" href="/doctor-dashboard"><span>Dashboard</span></a> </li>
       <li tabindex="0" class="icon-users"> <a style="color:white;font-size: 20px; text-decoration:none;" href="/doctor-patient"><span>Patient</span></a></li>
       <li tabindex="0" class="icon-calendar"> <a style="color:white;font-size: 20px; text-decoration:none;" href="/doctor-appointment"><span>Appointments</span></a></li>
-      <li tabindex="0" class="icon-calendar"> <a style="color:white;font-size: 20px; text-decoration:none;" href="/assdoc-to-doctor-messages"><span>Messages</span></a></li>
-
+      <li tabindex="0" class="icon-calendar"> <a style="color:white;font-size: 20px; text-decoration:none;" href=""><span>Messages</span></a>
+        <ul>
+          <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href="/assdoc-to-doctor-messages"><span>Read Messages</span></a></li>
+          <li tabindex="0" class="icon-users"> <a style="color:white; font-size: 20px" href="/doc-to-assdoc"><span>Send Message</span></a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
   <main>
