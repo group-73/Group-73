@@ -574,17 +574,17 @@ def assdoc_to_doctor_messages_view(request):
 @user_passes_test(is_doctor)
 def doc_to_assdoc_view(request):
     messageForm=forms.DoctortoassistantmessageForm()
-    #patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
+    doctor=models.Doctor.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
     mydict={'messageForm':messageForm}
     if request.method=='POST':
         messageForm=forms.DoctortoassistantmessageForm(request.POST)
         if messageForm.is_valid():
             message=messageForm.save(commit=False)
-            message.doctorId=request.POST.get('doctorId')
             message.assdoctorId=request.POST.get('assdoctorId')
             message.patientId=request.user.id #----user can choose any patient but only their info will be stored
-            message.assdoc_name=models.User.objects.get(id=request.POST.get('assdoctorId')).first_name
-            message.doc_name=models.User.objects.get(id=request.POST.get('doctorId')).first_name
+            #message.assdoc_name=models.User.objects.get(id=request.POST.get('assdoctorId')).first_name
+            message.doctorId=request.user.id
+            message.doc_name=request.user.username
           
            # message.lab_report=
             message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be stored
@@ -711,10 +711,11 @@ def assdoc_to_doctor_view(request):
         if messageForm.is_valid():
             message=messageForm.save(commit=False)
             message.doctorId=request.POST.get('doctorId')
+            print(message.doctorId)
             #message.assdoctorId=request.POST.get('assdoctorId')
             message.patientId=request.user.id #----user can choose any patient but only their info will be stored
-            message.doc_name=models.User.objects.get(id=request.POST.get('doctorId')).first_name
-            #message.assdoc_name=models.User.objects.get(id=request.POST.get('assdoctorId')).first_name
+           # message.doc_name=models.Doctor.objects.get(id=request.POST.get('doctorId')).first_name
+            message.assdoc_name=request.user.username
            # message.lab_report=
             message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be stored
             message.status=True
