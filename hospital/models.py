@@ -32,9 +32,8 @@ class Assdoc_to_Doctor_Messages(models.Model):
     Patient_name=models.CharField(max_length=255)
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-   # @property
-    #def __str__(self):
-     #  return "{}".format(self.name) 
+    #def _str_(self):
+    #    return self.doc_name
 
 
 
@@ -49,9 +48,8 @@ class doc_to_Assdoc_Messages(models.Model):
     Patient_name=models.CharField(max_length=255)
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-   # @property
-    #def __str__(self):
-     #   return "{}".format(self.name) 
+   # def _str_(self):
+     #   return self.assdoc_name
 
 
 

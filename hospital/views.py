@@ -13,6 +13,7 @@ from datetime import datetime,timedelta,date
 from hospital.models import Assdoc_to_Doctor_Messages
 from hospital.models import doc_to_Assdoc_Messages
 
+
 # Create your views here.
 
  
@@ -25,15 +26,15 @@ def index(request):
         print(name,email,phone,content)
         contact=Contact(name=name, email=email, phone=phone, content=content)
         contact.save()
+        messages.success(request, "Message has been sent succesfully")
     return render(request, 'index.html')
 
 
 
 def Contactdelete(request):
     delt=request.GET.get('delt')
-       
     cts = Contact.objects.filter(id=delt).delete()
-    messages.success(request, "Message has been deleted succesfully")
+    messages.success(request, "Message has Deleted succesfully")
     return redirect('/admin-messages')
 
 
@@ -66,6 +67,7 @@ def assdoctorclick_view(request):
 
 #to save details of admin signup in forms
 def adminsignup_view(request):
+    messages.success(request,'welcome to admin signup')
     form=forms.AdminSigupForm()
     if request.method=='POST':
         form=forms.AdminSigupForm(request.POST)
@@ -410,7 +412,7 @@ def delete_doctor_from_hospital_view(request,pk):
 @user_passes_test(is_admin)
 def admin_messages_view(request):
     all_message=Contact.objects.all()
-    return render(request,'admin_messages.html',{'messages': all_message})
+    return render(request,'admin_messages.html',{'message1': all_message})
 
 
 @login_required(login_url='adminlogin')
@@ -770,6 +772,7 @@ def patient_book_appointment_view(request):
             appointment.status=False
             appointment.save()
         return HttpResponseRedirect('patient-view-appointment')
+        
     return render(request,'patient_book_appointment.html',context=mydict)
 
 
