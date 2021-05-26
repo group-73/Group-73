@@ -110,9 +110,9 @@ def assdoctorsignup_view(request):
             user=userForm.save()
             user.set_password(user.password)
             user.save()
-            doctor=doctorForm.save(commit=False)
-            doctor.user=user
-            doctor=doctor.save()
+            assdoctor=doctorForm.save(commit=False)
+            assdoctor.user=user
+            assdoctor=assdoctor.save()
             my_adoctor_group = Group.objects.get_or_create(name='ASSDOCTOR')
             my_adoctor_group[0].user_set.add(user)
         return HttpResponseRedirect('assdoctorlogin')
