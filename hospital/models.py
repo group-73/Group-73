@@ -107,7 +107,7 @@ class Patient(models.Model):
 
 class assDoctor(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic= models.ImageField(upload_to='profile_pic/DoctorProfilePic/',null=True,blank=True)
+    profile_pic= models.ImageField(upload_to='profile_pic/AssDoctorProfilePic/',null=True,blank=True)
     address = models.CharField(max_length=40)
     mobile = models.CharField(max_length=20,null=True)
     department= models.CharField(max_length=50,choices=departments,default='Cardiologist')
