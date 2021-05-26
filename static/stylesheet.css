@@ -38,6 +38,7 @@ header.bgheader {
 }
 
 /* Navigation Bar */
+
 nav {
 	background-color: #000;
 	z-index: 5;
@@ -45,7 +46,9 @@ nav {
 }
 .logo-l1 {
 	color: #23d00c;
+	font-size: 18 px;
 }
+
 .logo-l2 {
 	color: #e7ffc0;
 }
@@ -53,7 +56,7 @@ nav div ul li:hover {
 	transition: 0.2s ease;
 	background-color: #005c23;
 }
-
+ 
 /* Home Section */
 section.home-section {
 	overflow: hidden;
