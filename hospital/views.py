@@ -239,6 +239,7 @@ def admit_patient(request):
     idd=request.GET.get('id')
     patient=models.Patient.objects.get(id=idd)
     patient.admit=True
+    is_discharged=False
     patient.admitdate=datetime.today()
     patient.save()
     return redirect('/admin-view-patient')
@@ -247,8 +248,9 @@ def dischargepatient(request):
     idd=request.GET.get('id')
     patient=models.Patient.objects.get(id=idd)
     patient.admit=False
+    is_discharged=True
     patient.save()
-    return redirect('/admin-view-patient')
+    return redirect('/admin-discharge-patient')
     
 
 @login_required(login_url='adminlogin')
@@ -853,9 +855,10 @@ def patient_discharge_view(request):
     patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
     dischargeDetails=models.PatientDischargeDetails.objects.all().filter(patientId=patient.id).order_by('-id')[:1]
     patientDict=None
-    if dischargeDetails:
+    #if dischargeDetails:
+    if is_discharged==True:
         patientDict ={
-        'is_discharged':True,
+       # 'is_discharged':True,
         'patient':patient,
         'patientId':patient.id,
         'patientName':patient.get_name,
