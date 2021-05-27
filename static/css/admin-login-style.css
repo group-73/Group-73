@@ -5,6 +5,7 @@ body{
   font-family: sans-serif;
   background: url(/css/images/admin-login.jpg) ;
   background-size: cover;
+  background-color: #E0E0E0;
 }
 .login-box{
   width: 280px;
