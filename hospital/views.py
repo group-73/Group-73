@@ -607,6 +607,8 @@ def doctor_view_patient_view(request):
     doctor=models.Doctor.objects.get(user_id=request.user.id) #for profile picture of doctor in sidebar
     return render(request,'doctor_view_patient.html',{'patients':patients,'doctor':doctor})
 
+    
+
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
 def doctor_view_discharge_patient_view(request):
@@ -615,11 +617,11 @@ def doctor_view_discharge_patient_view(request):
     return render(request,'doctor_view_discharge_patient.html',{'dischargedpatients':dischargedpatients,'doctor':doctor})
 
 def admit_request_from_doctor(request):
-    if request.method == 'POST':
-        
-        
+    if request.method == 'POST': 
         forms=AdmitrequestForm(request.POST)
         if forms.is_valid():
+
+            patient.assignedassDoctorId=request.POST.get('assignedassDoctorId')
 
             f=forms.save()
             return redirect('doctor-dashboard')
@@ -694,7 +696,19 @@ def delete_appointment_view(request,pk):
 @login_required(login_url='assdoctorlogin')
 @user_passes_test(is_assDoctor)
 def assdoctor_dashboard_view(request):
-    return render(request,'assdoctor_dashboard.html')#,conetxt=mydict)
+    mydict={
+    'assdoctor':models.assDoctor.objects.get(user_id=request.user.id)
+    }
+    return render(request,'assdoctor_dashboard.html',context=mydict)
+
+
+@login_required(login_url='assdoctorlogin')
+@user_passes_test(is_assDoctor)
+def assdoctor_view_patient_view(request):
+    patients=models.Patient.objects.all().filter(status=True,assignedassDoctorId=request.user.id)
+    assdoctor=models.assDoctor.objects.get(user_id=request.user.id) #for profile picture of doctor in sidebar
+    return render(request,'assdoctor_view_patient.html',{'patients':patients,'doctor':assdoctor})
+
 
 
 @login_required(login_url='assdoctorlogin')

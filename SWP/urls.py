@@ -75,6 +75,7 @@ urlpatterns = [
     path('assdoctorsignup',views.assdoctorsignup_view, name='assdoctorsignup'),
     path('assdoctorlogin',LoginView.as_view(template_name='assdoctorlogin.html')),
     path('assdoctor-dashboard', views.assdoctor_dashboard_view,name='assdoctor-dashboard'),
+    path('assdoctor-view-patient', views.assdoctor_view_patient_view,name='assdoctor-view-patient'),
     path('admin-approve-assdoctor', views.admin_approve_assdoctor_view,name='admin-approve-assdoctor'),
     path('approve-assdoctor/<int:pk>', views.approve_assdoctor_view,name='approve-assdoctor'),
     path('reject-assdoctor/<int:pk>', views.reject_assdoctor_view,name='reject-assdoctor'),

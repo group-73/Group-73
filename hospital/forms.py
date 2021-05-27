@@ -13,16 +13,18 @@ class AdminSigupForm(forms.ModelForm):
         }
 
 class AdmitrequestForm(forms.ModelForm):
-    class Meta:
+     patientId=forms.ModelChoiceField(queryset=models.Patient.objects.all().filter(status=True),empty_label="Patient Name and Symptoms", to_field_name="user_id")
+     assignedassDoctorId=forms.ModelChoiceField(queryset=models.assDoctor.objects.all().filter(status=True),empty_label="Name and Department", to_field_name="user_id")
+     class Meta:
         model=admitrequest
         fields=['name','phone']
         widgets = {
 
             'name' : forms.TextInput(attrs={'class':'form-control', 'required':'True'}),
-            'phone' : forms.TextInput(attrs={'class':'form-control', 'required':'True'}),
+           'phone' : forms.TextInput(attrs={'class':'form-control', 'required':'True'}),
             
            
-        }
+       }
 
 class DischargerequestForm(forms.ModelForm):
     class Meta:
