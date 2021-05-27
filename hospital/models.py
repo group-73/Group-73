@@ -132,9 +132,9 @@ class Appointment(models.Model):
     appointmentDate=models.DateField(auto_now=True)
     description=models.TextField(max_length=500)
     status=models.BooleanField(default=False)
-    @property
-    def __str__(self):
-        return "{}".format(self.patientName)
+    #@property
+    #def __str__(self):
+      #  return "{}".format(self.patientName)
 
 
 class PatientDischargeDetails(models.Model):
