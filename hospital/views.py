@@ -620,14 +620,16 @@ def admit_request_from_doctor(request):
     if request.method == 'POST': 
         forms=AdmitrequestForm(request.POST)
         if forms.is_valid():
-
+            patient.patientId=request.POST.get('patientId')
             patient.assignedassDoctorId=request.POST.get('assignedassDoctorId')
+            
+            patient=patient.save()
 
             f=forms.save()
             return redirect('doctor-dashboard')
    
     
-    return redirect('/')
+    return redirect('/doctor-dashboard')
 
 def discharge_request_from_doctor(request):
     if request.method == 'POST':
