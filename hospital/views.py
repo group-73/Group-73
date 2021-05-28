@@ -626,19 +626,15 @@ def doctor_view_discharge_patient_view(request):
     return render(request,'doctor_view_discharge_patient.html',{'dischargedpatients':dischargedpatients,'doctor':doctor})
 
 def admit_request_from_doctor(request):
-    if request.method == 'POST': 
+     if request.method == 'POST':
+        
+        
         forms=AdmitrequestForm(request.POST)
         if forms.is_valid():
-            patient.patientId=request.POST.get('patientId')
-            patient.assignedassDoctorId=request.POST.get('assignedassDoctorId')
-            
-            patient=patient.save()
 
             f=forms.save()
             return redirect('doctor-dashboard')
-   
-    
-    return redirect('/doctor-dashboard')
+        return redirect('/')
 
 def discharge_request_from_doctor(request):
     if request.method == 'POST':
