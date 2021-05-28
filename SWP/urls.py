@@ -34,6 +34,9 @@ urlpatterns = [
     path('doc-to-assdoc-messages',views.doc_to_assdoc_messages_view, name='doc_to_assdoc_messages'),
     path('doc-to-assdoc',views.doc_to_assdoc_view, name='doc_to_assdoc'),
     
+    path('patient-bill-message',views.patient_bill_message_view, name='patient-bill-message'),
+    path('admin-patient-bill-message',views.admin_patient_bill_message_view, name='admin-patient-bill-message'),
+
 
     #admin sginup and login
     path('adminsignup',views.adminsignup_view, name='adminsignup'),

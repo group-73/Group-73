@@ -120,3 +120,9 @@ class DoctortoassistantmessageForm(forms.ModelForm):
         fields=['content','lab_report']
 
 
+class PatientBillMessageForm(forms.ModelForm):
+    
+    class Meta:
+        model=models.Patient_Bill_Messages
+        fields=['content','Transaction_Id']
+

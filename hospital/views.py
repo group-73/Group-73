@@ -12,6 +12,7 @@ from hospital.models import Contact, admitrequest, dischargerequest
 from datetime import datetime,timedelta,date
 from hospital.models import Assdoc_to_Doctor_Messages
 from hospital.models import doc_to_Assdoc_Messages
+from hospital.models import Patient_Bill_Messages
 
 
 # Create your views here.
@@ -28,6 +29,7 @@ def index(request):
         contact.save()
         messages.success(request, "Message has been sent succesfully")
     return render(request, 'index.html')
+
 
 
 
@@ -474,6 +476,13 @@ def admin_approve_doctor_view(request):
     doctors=models.Doctor.objects.all().filter(status=False)
     return render(request,'admin_approve_doctor.html',{'doctors':doctors})
 
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_patient_bill_message_view(request):
+    all_message=Patient_Bill_Messages.objects.all()
+    return render(request,'admin_patient_bill_message.html',{'messages': all_message})
+
+
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -771,6 +780,30 @@ def patient_dashboard_view(request):
 def patient_appointment_view(request):
     patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
     return render(request,'patient_appointment.html',{'patient':patient})
+
+
+
+    
+@login_required(login_url='patientlogin')
+@user_passes_test(is_patient)
+def patient_bill_message_view(request):
+    messageForm=forms.PatientBillMessageForm()
+    #doctor=models.Doctor.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
+    mydict={'messageForm':messageForm}
+    if request.method=='POST':
+        messageForm=forms.PatientBillMessageForm(request.POST)
+        if messageForm.is_valid():
+            message=messageForm.save(commit=False)
+            message.Transaction_Id=request.POST.get('Transaction_Id')
+            message.Patient_name=request.user.username
+           # message.Patient_Id=models.Patient.objects.get(user_id=request.user.username)
+            
+           # message.status=True
+            message.save()
+        return HttpResponseRedirect('patient-bill-message')
+    return render(request,'patient_bill_message.html',context=mydict)
+
+
 
 
 @login_required(login_url='patientlogin')

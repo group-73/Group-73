@@ -35,8 +35,6 @@ class Assdoc_to_Doctor_Messages(models.Model):
     #def _str_(self):
     #    return self.doc_name
 
-
-
 class doc_to_Assdoc_Messages(models.Model):
     id=models.AutoField(primary_key=True)   
     patientId=models.PositiveIntegerField(null=True)
@@ -51,7 +49,14 @@ class doc_to_Assdoc_Messages(models.Model):
    # def _str_(self):
      #   return self.assdoc_name
 
-
+class Patient_Bill_Messages(models.Model):
+    Patient_name=models.CharField(max_length=255)
+    #Patient_Id=models.PositiveIntegerField(null=True)
+    Transaction_Id=models.CharField(max_length=255)
+    content=models.TextField()
+    timestamp=models.DateTimeField(auto_now_add=True , blank=True)
+    
+    
 
 class admitrequest(models.Model):  
     name=models.CharField(max_length=255)
