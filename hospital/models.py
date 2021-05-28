@@ -56,8 +56,8 @@ class doc_to_Assdoc_Messages(models.Model):
 class admitrequest(models.Model):  
     name=models.CharField(max_length=255)
     phone=models.CharField(max_length=12)
-    assignedassDoctorId = models.PositiveIntegerField(null=True)
-    patientId=models.PositiveIntegerField(null=True)
+    #assignedassDoctorId = models.PositiveIntegerField(null=True)
+    #patientId=models.PositiveIntegerField(null=True)
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
     def _str_(self):
         return self.name
