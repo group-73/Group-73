@@ -33,24 +33,7 @@ def index(request):
 
 
 
-def Contactdelete(request):
-    delt=request.GET.get('delt')
-    cts = Contact.objects.filter(id=delt).delete()
-    messages.success(request, "Message has Deleted succesfully")
-    return redirect('/admin-messages')
-
-
-def request_admit_delete_view(request):
-    delt=request.GET.get('delt')
-       
-    cts = admitrequest.objects.filter(id=delt).delete()
-    return redirect('/admin-patient')
-
-def dischargerequestadmitdelete(request):
-    delt=request.GET.get('delt')
-       
-    cts = dischargerequest.objects.filter(id=delt).delete()
-    return redirect('/admin-patient')    
+ 
 
 def adminclick_view(request):
    # if request.user.is_authenticated:
@@ -135,6 +118,7 @@ def patientsignup_view(request):
             patient=patientForm.save(commit=False)
             patient.user=user
             patient.assignedDoctorId=request.POST.get('assignedDoctorId')
+            patient.assignedassDoctorId=request.POST.get('assignedassDoctorId')
             patient=patient.save()
             my_patient_group = Group.objects.get_or_create(name='PATIENT')
             my_patient_group[0].user_set.add(user)
@@ -392,6 +376,20 @@ def reject_patient_view(request,pk):
     patient.delete()
     return redirect('admin-approve-patient')
 
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def request_admit_delete_view(request):
+    delt=request.GET.get('delt')
+    cts = admitrequest.objects.filter(id=delt).delete()
+    return redirect('/admin-patient')
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def dischargerequestadmitdelete(request):
+    delt=request.GET.get('delt')
+    cts = dischargerequest.objects.filter(id=delt).delete()
+    return redirect('/admin-patient')   
+
 
 #------------------FOR APPROVING DOCTOR BY ADMIN----------------------
 
@@ -417,6 +415,14 @@ def delete_doctor_from_hospital_view(request,pk):
 def admin_messages_view(request):
     all_message=Contact.objects.all()
     return render(request,'admin_messages.html',{'message1': all_message})
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def Contactdelete(request):
+    delt=request.GET.get('delt')
+    cts = Contact.objects.filter(id=delt).delete()
+    messages.success(request, "Message has Deleted succesfully")
+    return redirect('/admin-messages')
 
 
 @login_required(login_url='adminlogin')
@@ -546,6 +552,7 @@ def doctor_dashboard_view(request):
     patientcount=models.Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id).count()
     appointmentcount=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).count()
     patientdischarged=models.PatientDischargeDetails.objects.all().distinct().filter(assignedDoctorName=request.user.first_name).count()
+    messagescount=models.Assdoc_to_Doctor_Messages.objects.all().filter(doctorId=request.user.id).count()
     forms=AdmitrequestForm()
     form=DischargerequestForm()
     #for  table in doctor dashboard
@@ -561,6 +568,7 @@ def doctor_dashboard_view(request):
     'patientdischarged':patientdischarged,
     'appointments':appointments,
     'doctor':models.Doctor.objects.get(user_id=request.user.id),
+    'messagescount':messagescount,
     'forms':forms,
     'form':form
     }
@@ -575,12 +583,20 @@ def doctor_patient_view(request):
     return render(request,'doctor_patient.html',context=mydict)
 
 
+   
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
 def assdoc_to_doctor_messages_view(request):
     all_message=Assdoc_to_Doctor_Messages.objects.all()
     return render(request,'assdoc_to_doctor_messages.html',{'messages': all_message})
 
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
+def assdoctor_message_delete_view(request):
+    delt=request.GET.get('delt')
+    cts = Assdoc_to_Doctor_Messages.objects.filter(id=delt).delete()
+    messages.success(request, "Message has Deleted succesfully")
+    return redirect('/assdoc-to-doctor-messages')
 
 
 @login_required(login_url='dotorlogin')
@@ -703,8 +719,15 @@ def delete_appointment_view(request,pk):
 @login_required(login_url='assdoctorlogin')
 @user_passes_test(is_assDoctor)
 def assdoctor_dashboard_view(request):
+    patientcount=models.Patient.objects.all().filter(status=True,assignedassDoctorId=request.user.id).count()
+    messagescount=models.Assdoc_to_Doctor_Messages.objects.all().filter(assdoctorId=request.user.id).count()
+    messagecount=models.doc_to_Assdoc_Messages.objects.all().filter(assdoctorId=request.user.id).count()
     mydict={
+    'patientcount':patientcount,
+    'messagescount':messagescount,
+    'messagecount':messagecount,
     'assdoctor':models.assDoctor.objects.get(user_id=request.user.id)
+
     }
     return render(request,'assdoctor_dashboard.html',context=mydict)
 
@@ -712,7 +735,7 @@ def assdoctor_dashboard_view(request):
 @login_required(login_url='assdoctorlogin')
 @user_passes_test(is_assDoctor)
 def assdoctor_view_patient_view(request):
-    patients=models.Patient.objects.all().filter(status=True,assignedassDoctorId=request.user.id)
+    patients=models.Patient.objects.all().filter(status=True,assdoctorId=request.user.id)
     assdoctor=models.assDoctor.objects.get(user_id=request.user.id) #for profile picture of doctor in sidebar
     return render(request,'assdoctor_view_patient.html',{'patients':patients,'doctor':assdoctor})
 
@@ -721,11 +744,30 @@ def assdoctor_view_patient_view(request):
 @login_required(login_url='assdoctorlogin')
 @user_passes_test(is_assDoctor)
 def doc_to_assdoc_messages_view(request):
-    all_message=doc_to_Assdoc_Messages.objects.all()
+    all_message=doc_to_Assdoc_Messages.objects.all().filter(assdoctorId=request.user.id)
     return render(request,'doc_to_assdoc_messages.html',{'messages': all_message})
 
+@login_required(login_url='assdoctorlogin')
+@user_passes_test(is_assDoctor)
+def doctor_message_delete_view(request):
+    delt=request.GET.get('delt')
+    cts = doc_to_Assdoc_Messages.objects.filter(id=delt).delete()
+    messages.success(request, "Message has Deleted succesfully")
+    return redirect('/doc-to-assdoc-messages')
 
-@login_required(login_url='assdotorlogin')
+
+
+@login_required(login_url='assdoctorlogin')
+@user_passes_test(is_assDoctor)
+def  assdoctor_patient_view(request):
+    mydict={
+    'assdoctor':models.assDoctor.objects.get(user_id=request.user.id), #for profile picture of doctor in sidebar
+    }
+    return render(request,'assdoctor_patient.html',context=mydict)
+
+
+
+@login_required(login_url='assdoctorlogin')
 @user_passes_test(is_assDoctor)
 def assdoc_to_doctor_view(request):
     messageForm=forms.AssistanttodoctormessageForm()

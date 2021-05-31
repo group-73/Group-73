@@ -34,8 +34,11 @@
           <td>{{c.lab_report}}</td>
           <td>{{c.timestamp}}</td>
 
-          <td bgcolor="white"><a class="btn-sm btn-danger" href="/Contactdelete?delt={{c.id}}"
+          <td bgcolor="white"><a class="btn-sm btn-danger" href="/assdoc-to-doctor"
             role="button">Reply</a></td>
+
+          <td bgcolor="white"><a class="btn-sm btn-danger" href="/doctor-message-delete?delt={{c.id}}"
+            role="button">Delete</a></td>
 
         </tr>
         {% endfor %}

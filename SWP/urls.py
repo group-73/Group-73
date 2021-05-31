@@ -66,18 +66,21 @@ urlpatterns = [
 
     #doctor dashboard left side all views
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
-
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
     path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
     path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
     path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
+    path('assdoctor-message-delete', views.assdoctor_message_delete_view, name='assdoctor-message-delete'),
+    
 
     #assdoctor signup and login
     path('assdoctorsignup',views.assdoctorsignup_view, name='assdoctorsignup'),
     path('assdoctorlogin',LoginView.as_view(template_name='assdoctorlogin.html')),
     path('assdoctor-dashboard', views.assdoctor_dashboard_view,name='assdoctor-dashboard'),
+    path('assdoctor-patient', views.assdoctor_patient_view,name='assdoctor-patient'),
+    path('doctor-message-delete', views.doctor_message_delete_view, name='doctor-message-delete'),
     path('assdoctor-view-patient', views.assdoctor_view_patient_view,name='assdoctor-view-patient'),
     path('admin-approve-assdoctor', views.admin_approve_assdoctor_view,name='admin-approve-assdoctor'),
     path('approve-assdoctor/<int:pk>', views.approve_assdoctor_view,name='approve-assdoctor'),
