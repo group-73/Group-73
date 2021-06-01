@@ -595,7 +595,7 @@ def assdoc_to_doctor_messages_view(request):
 def assdoctor_message_delete_view(request):
     delt=request.GET.get('delt')
     cts = Assdoc_to_Doctor_Messages.objects.filter(id=delt).delete()
-    messages.success(request, "Message has Deleted succesfully")
+   # messages.success(request, "Message has Deleted succesfully")
     return redirect('/assdoc-to-doctor-messages')
 
 
@@ -752,7 +752,7 @@ def doc_to_assdoc_messages_view(request):
 def doctor_message_delete_view(request):
     delt=request.GET.get('delt')
     cts = doc_to_Assdoc_Messages.objects.filter(id=delt).delete()
-    messages.success(request, "Message has Deleted succesfully")
+   # messages.success(request, "Message has Deleted succesfully")
     return redirect('/doc-to-assdoc-messages')
 
 
