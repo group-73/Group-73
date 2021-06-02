@@ -165,7 +165,7 @@
     </div>
     
     <div class="col-md-4 market-update-gd">
-      <div class="market-update-block " style="background-color:#8007E3 ">
+      <div class="market-update-block " style="background-color:#21618C ">
         <div class="col-md-8 market-update-left">
           <h3>{{patientdischarged}}</h3>
           <h4>Your Patient Discharged</h4>
@@ -181,7 +181,7 @@
     <br><br>
   </div>
    <div class="col-md-4 market-update-gd">
-      <div class="market-update-block clr-block-3">
+      <div class="market-update-block clr-block-3" style="background-color:#21618C ">
         <div class="col-md-8 market-update-left">
           <h3>{{messagescount}}</h3>
           <h4>Message from assistent</h4>
@@ -200,7 +200,7 @@
     {{forms.as_p}}  
     
     <br>
-    <button type="submit" class="btn btn-success ">Submit </button>
+    <button type="submit" class="btn btn-success" >Submit </button>
     {% csrf_token %}
   </form>
   </div>
@@ -209,13 +209,13 @@
     </div>
 
   <div class="col-md-4 market-update-gd">
-      <div class="market-update-block " style="background-color:#0E6655;">
+      <div class="market-update-block " style="background-color:#21618C;">
         <h4> Discharge request</h4>
         <div class="text-center">
         <form action="/discharge_request_from_doctor" method='post'>
     {{form.as_p}}
     <br>
-    <button type="submit" class="btn btn-success ">Submit </button>
+    <button type="submit" class="btn  " style="background-color:#3498DB ">Submit </button>
     {% csrf_token %}
   </form>
   </div>
