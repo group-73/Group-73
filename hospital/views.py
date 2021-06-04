@@ -781,7 +781,7 @@ def assdoc_to_doctor_view(request):
             message.doctorId=request.POST.get('doctorId')
             message.patientId=request.user.id #----user can choose any patient but only their info will be stored
             message.assdoc_name=request.user.username
-           # message.lab_report=request.POST.get('lab_report')
+            message.lab_report=request.POST.get('lab_report')
             message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be store
             message=message.save()
         return HttpResponseRedirect('assdoc-to-doctor')
