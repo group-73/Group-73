@@ -1,5 +1,6 @@
 {% extends 'assdoctor_base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 {% block content %}
 
 <head>
@@ -59,16 +60,16 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              {% render_field messageForm.content class="form-control" placeholder="Description" %}
+              {% render_field assistanttodoctormessageForm.content class="form-control" placeholder="Description" %}
             </div>
             <div class="form-group">
-              {% render_field messageForm.doctorId class="form-control" placeholder="Doctor" %}
+              {% render_field assistanttodoctormessageForm.doctorId class="form-control" placeholder="Doctor" %}
             </div>
             <div class="form-group">
-              {% render_field messageForm.patientId class="form-control" placeholder="Patient" %}
+              {% render_field assistanttodoctormessageForm.patientId class="form-control" placeholder="Patient" %}
             </div>
             <div class="form-group">
-              {% render_field messageForm.lab_report class="form-control" placeholder="lab report" %}
+              {% render_field assistanttodoctormessageForm.lab_report class="form-control" placeholder="lab report" %}
             </div>
             
 

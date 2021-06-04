@@ -770,18 +770,18 @@ def  assdoctor_patient_view(request):
 @login_required(login_url='assdoctorlogin')
 @user_passes_test(is_assDoctor)
 def assdoc_to_doctor_view(request):
-    messageForm=forms.AssistanttodoctormessageForm()
+    assistanttodoctormessageForm=forms.AssistanttodoctormessageForm()
 
     #patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
-    mydict={'messageForm':messageForm}
+    mydict={'assistanttodoctormessageForm':assistanttodoctormessageForm}
     if request.method=='POST':
-        messageForm=forms.AssistanttodoctormessageForm(request.POST,request.FILES)
-        if messageForm.is_valid():
-            message=messageForm.save()
+        assistanttodoctormessageForm=forms.AssistanttodoctormessageForm(request.POST,request.FILES)
+        if assistanttodoctormessageForm.is_valid():
+            message=assistanttodoctormessageForm.save(commit=False)
             message.doctorId=request.POST.get('doctorId')
             message.patientId=request.user.id #----user can choose any patient but only their info will be stored
             message.assdoc_name=request.user.username
-            message.lab_report=request.POST.get('lab_report')
+           # message.lab_report=request.POST.get('lab_report')
             message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be store
             message=message.save()
         return HttpResponseRedirect('assdoc-to-doctor')
