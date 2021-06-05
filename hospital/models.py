@@ -17,7 +17,6 @@ class Contact(models.Model):
     email=models.CharField(max_length=100)
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-    @property
     def __str__(self):
         return "{}".format(self.name) 
 
@@ -26,28 +25,28 @@ class Assdoc_to_Doctor_Messages(models.Model):
     patientId=models.PositiveIntegerField(null=True)
     doctorId=models.PositiveIntegerField(null=True)
     assdoctorId=models.PositiveIntegerField(null=True)
-    lab_report= models.ImageField(upload_to='Lab_reports/',null=True,blank=True)
+    lab_report= models.ImageField(upload_to='Lab_reports/Assdoc_to_Doctor/',null=True,blank=True)
     assdoc_name=models.CharField(max_length=255)
     doc_name=models.CharField(max_length=255)
     Patient_name=models.CharField(max_length=255)
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-    #def _str_(self):
-    #    return self.doc_name
+    def __str__(self):
+        return "{}({})".format(self.assdoc_name,self.Patient_name) 
 
 class doc_to_Assdoc_Messages(models.Model):
     id=models.AutoField(primary_key=True)   
     patientId=models.PositiveIntegerField(null=True)
     doctorId=models.PositiveIntegerField(null=True)
     assdoctorId=models.PositiveIntegerField(null=True)
-    lab_report= models.ImageField(upload_to='Lab_reports/',null=True,blank=True)
+    lab_report= models.ImageField(upload_to='Lab_reports/doc_to_Assdoc/',null=True,blank=True)
     assdoc_name=models.CharField(max_length=255)
     doc_name=models.CharField(max_length=255)
     Patient_name=models.CharField(max_length=255)
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-   # def _str_(self):
-     #   return self.assdoc_name
+    def __str__(self):
+        return "{}({})".format(self.doc_name,self.Patient_name) 
 
 class Patient_Bill_Messages(models.Model):
     Patient_name=models.CharField(max_length=255)
@@ -55,7 +54,8 @@ class Patient_Bill_Messages(models.Model):
     Transaction_Id=models.CharField(max_length=255)
     content=models.TextField()
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-    
+    def __str__(self):
+        return "{} ({})".format(self.Patient_name,self.Transaction_Id)
     
 
 class admitrequest(models.Model):  
@@ -64,8 +64,8 @@ class admitrequest(models.Model):
     #assignedassDoctorId = models.PositiveIntegerField(null=True)
     #patientId=models.PositiveIntegerField(null=True)
     timestamp=models.DateTimeField(auto_now_add=True , blank=True)
-    def _str_(self):
-        return self.name
+    def __str__(self):
+        return "{}".format(self.name)
 
 class dischargerequest(models.Model):  
     name=models.CharField(max_length=255)
@@ -138,8 +138,8 @@ class Appointment(models.Model):
     description=models.TextField(max_length=500)
     status=models.BooleanField(default=False)
     #@property
-    #def __str__(self):
-      #  return "{}".format(self.patientName)
+    def __str__(self):
+        return "{}".format(self.patientName)
 
 
 class PatientDischargeDetails(models.Model):
@@ -159,3 +159,5 @@ class PatientDischargeDetails(models.Model):
     doctorFee=models.PositiveIntegerField(null=False)
     OtherCharge=models.PositiveIntegerField(null=False)
     total=models.PositiveIntegerField(null=False)        
+    def __str__(self):
+        return "{}".format(self.patientName)
