@@ -20,7 +20,7 @@
             <th>Assistant Doctor Name</th>
             <th>Patient Name</th> 
             <th>Message</th>
-            <th>Lab reports</th>
+         <!--   <th>Lab reports</th> -->
             <th>Time</th>
 
           </tr>
@@ -31,8 +31,8 @@
           <td> {{c.assdoc_name}}</td>
           <td>{{c.Patient_name}}</td>
           <td>{{c.content}}</td>
-          <td> <img src="{% static c.lab_report.url %}" alt="Lab Report" height="40px" width="40px" /></td>
-         <!--<td>{{c.lab_report}}</td>  -->
+         <!-- <td> <img src="{% static c.lab_report.url %}" alt="Lab Report" height="40px" width="40px" /></td>-->
+         <td>{{c.lab_report}}</td>   
           <td>{{c.timestamp}}</td>
 
           <td bgcolor="white"><a class="btn-sm btn-danger" href="/doc-to-assdoc"
