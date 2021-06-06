@@ -676,11 +676,11 @@ def doctor_appointment_view(request):
 @user_passes_test(is_doctor)
 def doctor_view_appointment_view(request):
     doctor=models.Doctor.objects.get(user_id=request.user.id) #for profile picture of doctor in sidebar
-    appointments=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id)
+    appointments=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).order_by('-id')
     patientid=[]
     for a in appointments:
         patientid.append(a.patientId)
-    patients=models.Patient.objects.all().filter(status=True,user_id__in=patientid)
+    patients=models.Patient.objects.all().filter(status=True,user_id__in=patientid).order_by('-id')
     appointments=zip(appointments,patients)
     return render(request,'doctor_view_appointment.html',{'appointments':appointments,'doctor':doctor})
 
@@ -775,15 +775,15 @@ def assdoc_to_doctor_view(request):
     #patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
     mydict={'assistanttodoctormessageForm':assistanttodoctormessageForm}
     if request.method=='POST':
-        assistanttodoctormessageForm=forms.AssistanttodoctormessageForm(request.POST,request.FILES)
+        assistanttodoctormessageForm=forms.AssistanttodoctormessageForm(request.POST)
         if assistanttodoctormessageForm.is_valid():
             message=assistanttodoctormessageForm.save(commit=False)
             message.doctorId=request.POST.get('doctorId')
             message.patientId=request.user.id #----user can choose any patient but only their info will be stored
             message.assdoc_name=request.user.username
-            message.lab_report=request.POST.get('lab_report')
+            #message.lab_report=request.POST.get('lab_report')
             message.Patient_name=models.User.objects.get(id=request.POST.get('patientId')).first_name #----user can choose any patient but only their info will be store
-            message=message.save()
+            message.save()
         return HttpResponseRedirect('assdoc-to-doctor')
     return render(request,'assdoc_to_doctor.html',context=mydict)
 
