@@ -588,7 +588,7 @@ def doctor_patient_view(request):
 @user_passes_test(is_doctor)
 def assdoc_to_doctor_messages_view(request):
     all_message=Assdoc_to_Doctor_Messages.objects.all()
-    return render(request,'assdoc_to_doctor_messages.html',{'messages': all_message})
+    return render(request,'assdoc_to_doctor_messages.html',{'all_message': all_message})
 
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
@@ -775,7 +775,7 @@ def assdoc_to_doctor_view(request):
     #patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
     mydict={'assistanttodoctormessageForm':assistanttodoctormessageForm}
     if request.method=='POST':
-        assistanttodoctormessageForm=forms.AssistanttodoctormessageForm(request.POST)
+        assistanttodoctormessageForm=forms.AssistanttodoctormessageForm(request.POST,request.FILES)
         if assistanttodoctormessageForm.is_valid():
             message=assistanttodoctormessageForm.save(commit=False)
             message.doctorId=request.POST.get('doctorId')

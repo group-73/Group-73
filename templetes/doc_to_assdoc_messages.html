@@ -31,7 +31,11 @@
           <td> {{c.doc_name}}</td>
           <td>{{c.Patient_name}}</td>
           <td>{{c.content}}</td>
-          <td>{{c.lab_report}}</td>
+           {% if c.lab_report %}
+          <td><a class="btn-sm btn-secondary" href="{{c.lab_report.url}}" role="button">view </a></td>  
+         {% else %} 
+              <td> - </td>
+                    {% endif %} 
           <td>{{c.timestamp}}</td>
 
           <td bgcolor="white"><a class="btn-sm btn-danger" href="/assdoc-to-doctor"
