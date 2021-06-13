@@ -32,9 +32,10 @@
           <td>{{c.Patient_name}}</td>
           <td>{{c.content}}</td>
            {% if c.lab_report %}
-          <td><a href={% static 'c.lab_report.url' %} target="_blank"><img src="{% static c.lab_report.url %}" alt="Profile Pic" height="40px" width="40px" /></td>  
+          <td><img src="{% static c.lab_report.url %}" alt="Profile Pic" height="40px" width="40px" /></td>  
          <!-- <a class="btn-sm btn-secondary" href="{% static c.lab_report.url %}" role="button">view </a>-->
          {% else %} 
+        
               <td> - </td>
                     {% endif %} 
           <td>{{c.timestamp}}</td>

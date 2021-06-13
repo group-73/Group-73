@@ -123,6 +123,7 @@ urlpatterns = [
     path('requestadmitdelete',views.request_admit_delete_view,name='requestadmitdelete'),
     path('dischargerequestadmitdelete',views.dischargerequestadmitdelete,name='dischargerequestadmitdelete'),
     
+   # path('image-display/<int:pk>',views.image_display_view,name='image-display')
  
     
     

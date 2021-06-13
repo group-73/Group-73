@@ -1006,3 +1006,8 @@ def download_pdf_view(request,pk):
     }
     return render_to_pdf('download_bill.html',dict)
 
+
+#def image_display_view(request,pk):
+ #   image=models.doc_to_Assdoc_Messages.objects.get(id=pk)
+  #  return render(request,'image_display.html',{'image':image})
+
